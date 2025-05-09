@@ -1,0 +1,8 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+import { Navbar } from '../React/Navbar';
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<Navbar locale={lang} />
