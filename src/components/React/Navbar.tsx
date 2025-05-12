@@ -38,19 +38,15 @@ export const Navbar: React.FC<Props> = ({ locale }) => {
   return (
     <nav className='fixed z-10 w-full bg-beige-50'>
       <div className=" flex px-4 py-8 gap-4 justify-between items-center max-w-5xl mx-auto">
-        {/* Permite al usuario cambiar de idioma */}
-        <div className='inline-flex space-x-4'>
-          <LanguagePicker locale={locale} />
-          <h1>Logotipo</h1>
-
-        </div>
+        {/* Logo */}
+        <h1>Logotipo</h1>
 
         {/* Desktop Menu */}
-        <div className="hidden sm:inline-flex justify-start items-center gap-4 body">
+        <div className="inline-flex justify-start items-center gap-4 body">
           {
             data.map((item: any) => {
               return (
-                <div key={item.id}>
+                <div className='hidden md:block' key={item.id}>
                   {item.children.length === 0 ?
                     /* Link */
                     <a href={item.url}>{item.title}</a>
@@ -76,13 +72,15 @@ export const Navbar: React.FC<Props> = ({ locale }) => {
             }
             )
           }
+
+          {/* Menu Button */}
+          <button onClick={() => setOpen(!open)} className='md:hidden'>
+            {!open ? <Menu color='#0A0A0A' /> : <X color='#0A0A0A' />}
+          </button>
+
+          {/* Permite al usuario cambiar de idioma */}
+          <LanguagePicker locale={locale} />
         </div>
-
-        {/* Menu Button */}
-        <button onClick={() => setOpen(!open)} className='md:hidden'>
-          {!open ? <Menu color='#0A0A0A' /> : <X color='#0A0A0A' />}
-        </button>
-
       </div>
 
       {/* Mobile Menu */}

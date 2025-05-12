@@ -23,7 +23,7 @@ export const LanguagePicker: React.FC<Props> = ({ locale }) => {
       </button>
       {/* Dropdown */}
       {open && (
-         <ul className='absolute'>
+         <ul className='absolute right-0'>
         {Object.entries(languages).map(([lang, label]) => (
           <li key={lang}>
             <a href={translatePath('/', lang)}>{label}</a>
