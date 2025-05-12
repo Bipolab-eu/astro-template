@@ -4,8 +4,6 @@ import { Navbar } from '../React/Navbar';
 
 const lang = getLangFromUrl(Astro.url);
 const route = getRouteFromUrl(Astro.url);
-
-console.log('route', route);
 ---
 
 <Navbar locale={lang} route={route} client:load/>

@@ -52,7 +52,7 @@ export const Navbar: React.FC<Props> = ({ locale, route }) => {
                 <div className='hidden md:block' key={item.id}>
                   {item.children.length === 0 ?
                     /* Link */
-                    <a href={translatePath(`${item.url}`)}>{item.title}</a>
+                    <a href={translatePath(item.url)}>{item.title}</a>
                     :
                     /* Dropdown */
                     <div key={item.id} className='relative group'>
@@ -62,7 +62,7 @@ export const Navbar: React.FC<Props> = ({ locale, route }) => {
                           {item.children.map((child: any) => {
                             return (
                               <li key={child.id}>
-                                <a href={child.url}>{child.title}</a>
+                                <a href={translatePath(child.url)}>{child.title}</a>
                               </li>
                             );
                           })}
@@ -95,7 +95,7 @@ export const Navbar: React.FC<Props> = ({ locale, route }) => {
                 <div key={item.id}>
                   {item.children.length === 0 ?
                     /* Link */
-                    <a href={item.url}>{item.title}</a>
+                    <a href={translatePath(item.url)}>{item.title}</a>
                     :
                     /* Dropdown */
                     <div key={item.id} className='relative group'>
@@ -105,7 +105,7 @@ export const Navbar: React.FC<Props> = ({ locale, route }) => {
                           {item.children.map((child: any) => {
                             return (
                               <li key={child.id}>
-                                <a href={child.url}>{child.title}</a>
+                                <a href={translatePath(child.url)}>{child.title}</a>
                               </li>
                             );
                           })}

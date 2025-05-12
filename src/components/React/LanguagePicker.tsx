@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { languages } from '../../i18n/ui'
-import { getRouteFromUrl, useTranslatedPath } from '../../i18n/utils';
+import { useTranslatedPath } from '../../i18n/utils';
 import { Languages } from 'lucide-react';
 
 interface Props {
@@ -26,7 +26,7 @@ export const LanguagePicker: React.FC<Props> = ({ locale, route }) => {
       </button>
       {/* Dropdown */}
       {open && (
-        <ul className='absolute right-0'>
+        <ul className='absolute right-0 mt-4 shadow-2xl rounded-xl px-4 py-6 space-y-3 text-right'>
           {Object.entries(languages).map(([lang, label]) => (
             <li key={lang}>
               <a href={translatePath(`/${route ? route : ''}`, lang)}>{label}</a>
