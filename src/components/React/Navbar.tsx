@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { LanguagePicker } from './LanguagePicker';
+import { useTranslatedPath } from '../../i18n/utils';
 
 interface Props {
   locale: any
+  route: any
 }
 
 /* Data Example */
@@ -32,8 +34,9 @@ const data = [
   },
 ]
 
-export const Navbar: React.FC<Props> = ({ locale }) => {
+export const Navbar: React.FC<Props> = ({ locale, route }) => {
   const [open, setOpen] = useState<boolean>(false);
+  const translatePath = useTranslatedPath(locale);
 
   return (
     <nav className='fixed z-10 w-full bg-beige-50'>
@@ -49,7 +52,7 @@ export const Navbar: React.FC<Props> = ({ locale }) => {
                 <div className='hidden md:block' key={item.id}>
                   {item.children.length === 0 ?
                     /* Link */
-                    <a href={item.url}>{item.title}</a>
+                    <a href={translatePath(`${item.url}`)}>{item.title}</a>
                     :
                     /* Dropdown */
                     <div key={item.id} className='relative group'>
@@ -79,7 +82,7 @@ export const Navbar: React.FC<Props> = ({ locale }) => {
           </button>
 
           {/* Permite al usuario cambiar de idioma */}
-          <LanguagePicker locale={locale} />
+          <LanguagePicker locale={locale} route={route} />
         </div>
       </div>
 
