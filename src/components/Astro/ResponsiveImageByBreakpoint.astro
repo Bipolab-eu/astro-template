@@ -1,0 +1,38 @@
+---
+/**
+ * "lazy": Carga diferida (por defecto).
+ * "eager": Carga inmediata.
+*/
+
+import { Image } from "astro:assets";
+
+export interface Props {
+  cover: Record<string, any>;
+  loading: "lazy" | "eager";
+}
+
+const { cover, loading } = Astro.props;
+
+const breakpoints = [
+  { format: "xlarge", class: "hidden 2xl:block 2xl:w-full" },
+  { format: "large", class: "hidden xl:block xl:w-full 2xl:hidden" },
+  { format: "medium", class: "hidden lg:block lg:w-full xl:hidden" },
+  { format: "small", class: "hidden md:block md:w-full lg:hidden" },
+  { format: "xsmall", class: "block w-full md:hidden" },
+];
+
+---
+{cover && (
+  <>
+    {breakpoints.map(({ format, class: className }) => (
+      <Image
+        class={className}
+        src={cover.formats?.[format]?.url || cover.url}
+        alt={cover.name}
+        width={cover.formats?.[format]?.width || cover.width}
+        height={cover.formats?.[format]?.height || cover.height}
+        loading={loading}
+      />
+    ))}
+  </>
+)}
