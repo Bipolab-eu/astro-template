@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
 
 import react from "@astrojs/react";
@@ -20,5 +20,18 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: false
     }
+  },
+
+  image: {
+    remotePatterns: [{ protocol: "https" }],
+  },
+
+  experimental: {
+    fonts: [{
+      provider: fontProviders.google(),
+      name: "IBM Plex Serif",
+      weights: ["100 900"],
+      cssVariable: "--font-ibm-plex-serif"
+    }]
   }
 });
