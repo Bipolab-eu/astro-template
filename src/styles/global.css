@@ -79,4 +79,9 @@ body {
   .btn-icon-secondary {
     @apply p-6 bg-neutral-50 rounded-lg inline-flex items-center md:cursor-pointer;
   }
+
+  /* Block Content */
+  .blockContent {
+    @apply max-w-2xl;
+  }
 }
