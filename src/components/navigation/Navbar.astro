@@ -1,0 +1,21 @@
+---
+import DropdownMenu from "./DropdownMenu.astro";
+import LanguagePicker from "./LanguagePicker.astro";
+---
+
+<nav class="hidden lg:block sticky bg-neutral-50 shadow-sm">
+  <div class="flex items-center justify-between h-18 px-8">
+    <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" class="h-8 w-auto" />
+    <div class="flex items-center space-x-4">
+      <ul>
+        <li class="space-x-2">
+          <a href="/" class="px-1">Home</a>
+          <a href="/" class="px-1">Home</a>
+          <a href="/" class="px-1">Home</a>
+          <DropdownMenu />
+        </li>
+      </ul>
+      <LanguagePicker />
+    </div>
+  </div>
+</nav>
