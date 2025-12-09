@@ -1,4 +1,5 @@
 ---
+import DynamicSection from "../../components/DynamicSection.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const { lang } = Astro.params;
@@ -6,4 +7,5 @@ const { lang } = Astro.params;
 
 <Layout>
   <h1>Idioma seleccionado: {lang}</h1>
+  <DynamicSection lang={lang} />
 </Layout>
