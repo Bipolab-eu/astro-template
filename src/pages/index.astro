@@ -1,6 +1,8 @@
 ---
 /* Home */
 
+import Cta from "../components/Cta.astro";
+import Hero from "../components/Hero.astro";
 import DynamicZone from "../layouts/DynamicZone.astro";
 import Layout from "../layouts/Layout.astro";
 import { fetchApi } from "../lib/strapi/fetchApi";
@@ -18,5 +20,7 @@ const data = (await fetchApi({
 ---
 
 <Layout seo={data.seo} >
+  <Hero></Hero>
+  <Cta></Cta>
   <DynamicZone blocks={data.blocks} />
 </Layout>

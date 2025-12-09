@@ -1,6 +1,16 @@
 ---
+import Footer from "../components/Footer.astro";
 import Navbar from "../components/UI/Navbar.astro";
+import { fetchNavigation } from "../lib/strapi/fetchNavigation";
 import "../styles/global.css";
+
+const { seo } = Astro.props
+
+const data = (await fetchNavigation({
+  navigationId: "/api/navigation/render/navigation",
+  type: "TREE",
+})) as any;
+
 ---
 <!doctype html>
 <html lang="en">
@@ -9,12 +19,26 @@ import "../styles/global.css";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		
+		<!-- SEO básico -->
+    <title>{seo?.metaTitle}</title>
+    <meta name="description" content={seo?.metaDescription} />
+
+    <!-- Open Graph -->
+    <!-- {seo.ogTitle && <meta property="og:title" content={seo.ogTitle} />}
+    {seo.ogDescription && <meta property="og:description" content={seo.ogDescription} />}
+    {seo.ogUrl && <meta property="og:url" content={seo.ogUrl} />}
+    {seo.ogImage && <meta property="og:image" content={seo.ogImage} />}
+    <meta property="og:type" content="website" /> -->
+
+    <!-- Twitter tags -->
+    <!-- <meta name="twitter:card" content="summary_large_image" /> -->
 
 		<script is:inline src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 	</head>
 	<body>
 		<Navbar />
 		<slot />
+		<Footer />
 	</body>
 </html>
