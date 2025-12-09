@@ -1,0 +1,22 @@
+---
+// import Hero from "../components/Hero.astro";
+
+interface Props {
+  blocks: any
+}
+
+const { blocks } = Astro.props;
+
+const listComponents: Record<string, any> = {
+ // "blocks.hero": Hero,
+};
+
+if (!blocks) { return null }
+---
+
+{
+  blocks.map((block: any, i: number) => {
+    const Component = listComponents[block.__component];
+    return <Component key={`${block.id || ""}-${i}`} {...block} />;
+  })
+}

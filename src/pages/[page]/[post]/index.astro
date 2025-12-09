@@ -1,0 +1,32 @@
+---
+/* Post */
+
+import DynamicZone from "../../../layouts/DynamicZone.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { fetchApi } from "../../../lib/strapi/fetchApi";
+import { populateBlocks } from "../../../lib/strapi/populateBlocks";
+import { populateSeo } from "../../../lib/strapi/populateSeo";
+
+const { post } = Astro.params;
+
+const APIDATA = await fetchApi({
+    apiRoute: '/api/posts',
+		filters: {
+      slug: {
+        $eq: post,
+      },
+    },
+    populate: {
+      ...populateBlocks,
+      ...populateSeo
+    }
+  }) as any
+
+	const [data] = APIDATA || []
+  if (!data?.slug) return Astro.redirect('/404');
+
+---
+
+<Layout seo={data.seo}>
+	<DynamicZone blocks={data.blocks} />
+</Layout>

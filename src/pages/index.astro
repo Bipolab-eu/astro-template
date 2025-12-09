@@ -1,4 +1,22 @@
-<!-- 
- Don't edit or delete this file!
- A root index page is required in order to create a redirect to the index URL of the default locale.
- -->
+---
+/* Home */
+
+import DynamicZone from "../layouts/DynamicZone.astro";
+import Layout from "../layouts/Layout.astro";
+import { fetchApi } from "../lib/strapi/fetchApi";
+import { populateBlocks } from "../lib/strapi/populateBlocks";
+import { populateSeo } from "../lib/strapi/populateSeo";
+
+const data = (await fetchApi({
+  apiRoute: "/api/home",
+  populate: {
+    ...populateBlocks,
+    ...populateSeo,
+  },
+})) as any;
+
+---
+
+<Layout seo={data.seo} >
+  <DynamicZone blocks={data.blocks} />
+</Layout>
