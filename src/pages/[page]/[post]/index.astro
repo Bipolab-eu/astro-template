@@ -1,38 +1,22 @@
 ---
 /* Post */
-
-/* import DynamicZone from "../../../layouts/DynamicZone.astro";
 import Layout from "../../../layouts/Layout.astro";
 import { fetchApi } from "../../../lib/strapi/fetchApi";
-import { populate } from "../../../lib/strapi/populate";
 
 const { post } = Astro.params;
 
-const [data] = await fetchApi({
-    apiRoute: `/api/posts`,
-		filters: {
-      slug: {
-        $eq: post,
-      },
+const data = await fetchApi({
+  apiRoute: `/api/posts`,
+  filters: {
+    slug: {
+      $eq: post,
     },
-    populate
-  }) as any
+  },
+  // populate: true,
+  // true para popular el contenido. Por defecto es false.
+}) as any
 
-  if (!data) return Astro.redirect('/404'); */
-  
+if (!data[0]) return Astro.redirect("/404")
 ---
 
-<!-- <Layout seo={data.seo}>
-  <DynamicZone sections={data.sections} />
-</Layout> -->
-
-<h1>Servidor desconectado</h1>
-<h2>Como conectar al servidor de Strapi</h2>
-<p>
-  En Strapi, crea una Collection Types que se llame "Post"
-  <br>
-  Esta pagina solo funciona mientras el servidor de strapi esta activo, si quieres probarla sin el servidor, 
-  <br>
-  cuando tengas el servidor activo, descomenta el codigo de esta pagina: src/pages/[page]/[post]/index.astro
-</p>
-<p></p>
+<Layout seo={data[0].seo} sections={data[0].sections} />

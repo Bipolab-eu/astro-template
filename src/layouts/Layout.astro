@@ -3,8 +3,14 @@ import Footer from "../components/Footer.astro";
 import Navbar from "../components/UI/Navbar.astro";
 import { fetchNavigation } from "../lib/strapi/fetchNavigation";
 import "../styles/global.css";
+import DynamicZone from "./DynamicZone.astro";
 
-const { seo } = Astro.props
+interface Props {
+	seo: any,
+	sections: any[]
+}
+
+const { seo, sections } = Astro.props as Props;
 
 const data = (await fetchNavigation({
   navigationId: "/api/navigation/render/navigation",
@@ -38,7 +44,8 @@ const data = (await fetchNavigation({
 	</head>
 	<body>
 		<Navbar />
-		<slot />
+		<DynamicZone sections={sections} />
 		<Footer />
+		<slot />
 	</body>
 </html>

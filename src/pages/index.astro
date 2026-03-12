@@ -1,27 +1,17 @@
 ---
 /* Home */
-import Cta from "../components/Cta.astro";
-import Hero from "../components/Hero.astro";
-import DynamicZone from "../layouts/DynamicZone.astro";
 import Layout from "../layouts/Layout.astro";
 import { fetchApi } from "../lib/strapi/fetchApi";
-import { populate } from "../lib/strapi/populate";
 
-const documentId = import.meta.env.DOCUMENT_ID || "rfp5n8wdxpbcsrfmfe7y21cj"; // cambiar por el documentId de la página que se quiera mostrar
+// Cambia por el documentId de la página que se quiera mostrar
+const documentId = import.meta.env.DOCUMENT_ID || "rfp5n8wdxpbcsrfmfe7y21cj";
 
 const data = await fetchApi({
   apiRoute: `/api/pages/${documentId}`,
-  populate,
-}) as any;
+  populate: true, // true para popular el contenido. Por defecto es false.
+}) as any
 
-if (!data) {
-  throw new Error("Tienes que crear una página en Strapi y asignarle el documentId correcto para que se muestre aquí");
-}
-
+if (!data) return Astro.redirect("/404")
 ---
 
-<Layout seo={data.seo} >
-  <Hero></Hero>
-  <Cta></Cta>
-  <DynamicZone sections={data.sections} />
-</Layout>
+<Layout seo={data.seo} sections={data.sections} />
