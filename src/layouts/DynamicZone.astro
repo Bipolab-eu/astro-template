@@ -8,10 +8,10 @@ interface Props {
   sections: any
 }
 
-const { sections } = Astro.props;
+const { sections } = Astro.props as Props;
 
 const listComponents: Record<string, any> = {
- "sections.hero": Hero,
+ 'sections.hero': Hero,
 };
 
 if (!sections) return console.warn("DynamicZone: No sections found")
