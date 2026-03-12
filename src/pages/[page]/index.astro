@@ -1,32 +1,40 @@
 ---
 /* Pages */
 
-import DynamicZone from "../../layouts/DynamicZone.astro";
+/* import DynamicZone from "../../layouts/DynamicZone.astro";
 import Layout from "../../layouts/Layout.astro";
 import { fetchApi } from "../../lib/strapi/fetchApi";
-import { populateBlocks } from "../../lib/strapi/populateBlocks";
-import { populateSeo } from "../../lib/strapi/populateSeo";
+import { populate } from "../../lib/strapi/populate";
 
 const { page } = Astro.params;
 
-const APIDATA = await fetchApi({
-    apiRoute: '/api/pages',
-		filters: {
-      slug: {
-        $eq: page,
-      },
+const [data] = await fetchApi({
+  apiRoute: "/api/pages",
+  filters: {
+    slug: {
+      $eq: page,
     },
-    populate: {
-      ...populateBlocks,
-      ...populateSeo
-    }
-  }) as any
+  },
+  populate,
+}) as any;
 
-	const [data] = APIDATA || []
-  if (!data?.slug) return Astro.redirect('/404');
+if (!data) return Astro.redirect("/404"); */
 
 ---
 
-<Layout seo={data.seo}>
-	<DynamicZone blocks={data.blocks} />
-</Layout>
+<!-- <Layout seo={data.seo}>
+  <DynamicZone sections={data.sections} />
+</Layout> -->
+
+<h1>Servidor desconectado</h1>
+<h2>Como conectar al servidor de Strapi</h2>
+<p>
+  En Strapi, crea una Collection Types que se llame "Page"
+  <br>
+  Esta pagina solo funciona mientras el servidor de strapi esta activo, si quieres probarla sin el servidor, 
+  <br>
+  cuando tengas el servidor activo, descomenta el codigo de esta pagina: src/pages/[page]/index.astro
+</p>
+<p></p>
+
+

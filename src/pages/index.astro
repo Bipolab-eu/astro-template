@@ -1,26 +1,27 @@
 ---
 /* Home */
-
 import Cta from "../components/Cta.astro";
 import Hero from "../components/Hero.astro";
 import DynamicZone from "../layouts/DynamicZone.astro";
 import Layout from "../layouts/Layout.astro";
 import { fetchApi } from "../lib/strapi/fetchApi";
-import { populateBlocks } from "../lib/strapi/populateBlocks";
-import { populateSeo } from "../lib/strapi/populateSeo";
+import { populate } from "../lib/strapi/populate";
+
+const documentId = "rfp5n8wdxpbcsrfmfe7y21cj"; // cambiar por el documentId de la página que se quiera mostrar
 
 const data = (await fetchApi({
-  apiRoute: "/api/home",
-  populate: {
-    ...populateBlocks,
-    ...populateSeo,
-  },
+  apiRoute: `/api/pages/${documentId}`,
+  populate,
 })) as any;
+
+if (!data) {
+  throw new Error("Tienes que crear una página en Strapi y asignarle el documentId correcto para que se muestre aquí");
+}
 
 ---
 
 <Layout seo={data.seo} >
   <Hero></Hero>
   <Cta></Cta>
-  <DynamicZone blocks={data.blocks} />
+  <DynamicZone sections={data.sections} />
 </Layout>

@@ -37,9 +37,9 @@ export const fetchApi = async <T>({
     });
 
     const response = await fetch(`${url}${apiRoute}?${query}`);
-    const { data } = await response.json();
+    const { data, error } = await response.json();
 
-    if (!data) { return {} };
+    if (!data) return error;
 
     return data;
 

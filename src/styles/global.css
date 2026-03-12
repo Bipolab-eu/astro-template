@@ -21,3 +21,15 @@
   --text-96: 6rem;
   
 }
+
+.btn {
+ @apply rounded-md px-3.5 py-2.5 text-sm font-semibold shadow-xs;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
+}
+
+.btn-secondary {
+  @apply bg-white text-gray-900 inset-ring inset-ring-gray-300 hover:bg-gray-50;
+}
