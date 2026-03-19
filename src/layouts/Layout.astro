@@ -1,7 +1,6 @@
 ---
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/UI/Navbar.astro";
-import { fetchNavigation } from "../lib/strapi/fetchNavigation";
 import "../styles/global.css";
 import DynamicZone from "./DynamicZone.astro";
 
@@ -11,13 +10,8 @@ interface Props {
 }
 
 const { seo, sections } = Astro.props as Props;
-
-const data = (await fetchNavigation({
-  navigationId: "/api/navigation/render/navigation",
-  type: "TREE",
-})) as any;
-
 ---
+
 <!doctype html>
 <html lang="en">
 	<head>
