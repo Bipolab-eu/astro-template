@@ -1,4 +1,3 @@
-import CallToAction from "../../components/Blocks/CallToAction.astro";
 import Hero from "../../components/Blocks/Hero.astro";
 
 const dinamicZoneName = import.meta.env.DYNAMIC_ZONE
@@ -8,9 +7,6 @@ export const populate = {
   [dinamicZoneName]: {
     on: {
       [`${dinamicZoneName}.hero`]: {
-        populate: true
-      },
-      [`${dinamicZoneName}.call-to-action`]: {
         populate: true
       },
       // populate more components
@@ -28,6 +24,5 @@ export const populate = {
 export const listComponents: Record<string, any> = {
   // Crea la lista de componentes necesarios para renderizar en la Dynamic Zone
  [`${dinamicZoneName}.hero`]: Hero,
- [`${dinamicZoneName}.call-to-action`]: CallToAction,
  // add more components
 };

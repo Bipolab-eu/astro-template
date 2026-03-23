@@ -7,6 +7,7 @@ import { fetchApi } from "../lib/strapi/fetchApi";
 
 // Cambia por el documentId de la página que se quiera mostrar
 const documentId = import.meta.env.DOCUMENT_ID || "rfp5n8wdxpbcsrfmfe7y21cj";
+const DZ = import.meta.env.DYNAMIC_ZONE
 
 const data = await fetchApi({
   apiRoute: `/api/pages/${documentId}`,
@@ -14,7 +15,7 @@ const data = await fetchApi({
 
 if (!data) return Astro.redirect("/404")
 
-const { seo, blocks:items } = data // cambiar blocks por el nombre de la zona dinámica que uses en strapi
+const { seo, [DZ]:items } = data // cambiar blocks por el nombre de la zona dinámica que uses en strapi
 
 ---
 
