@@ -3,7 +3,8 @@
 import CallToAction from "../../components/Blocks/CallToAction.astro";
 import Hero from "../../components/Blocks/Hero.astro";
 
-const dinamicZoneName = import.meta.env.DYNAMIC_ZONE || 'blocks'
+const dinamicZoneName = import.meta.env.DYNAMIC_ZONE
+
 
 export const populate = {
   // Esto popula zonas dinamicas de strapi, como los bloques de secciones, o el open graph de SEO.

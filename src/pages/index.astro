@@ -13,9 +13,10 @@ const data = await fetchApi({
 
 if (!data) return Astro.redirect("/404")
 
-const { seo, data:blocks } = data
+const { seo, blocks:items } = data
+
 ---
 
 <Layout seo={seo}>
-  <DynamicZone blocks={blocks} />
+  <DynamicZone blocks={items} />
 </Layout>
