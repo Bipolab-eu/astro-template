@@ -4,7 +4,7 @@ https://docs.strapi.io/cms/api/rest/interactive-query-builder
 */
 
 import qs from 'qs';
-import { populate as PopulateSections } from './populate';
+import { populate } from './content-type';
 
 const url = import.meta.env.API_URL || 'http://localhost:1337';
 
@@ -13,7 +13,6 @@ interface QueryProps {
   locale?: any,
   sort?: string[],
   filters?: Record<string, any>,
-  populate?: boolean,
   fields?: string[]
 }
 
@@ -22,7 +21,6 @@ export const fetchApi = async <T>({
   locale,
   sort,
   filters,
-  populate,
   fields
 }: QueryProps): Promise<T | {}> => {
 
@@ -31,7 +29,7 @@ export const fetchApi = async <T>({
       locale,
       sort,
       filters,
-      populate: populate ? PopulateSections : null,
+      populate,
       fields
     }, {
       encodeValuesOnly: true,

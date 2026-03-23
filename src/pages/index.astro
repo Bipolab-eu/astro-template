@@ -1,5 +1,6 @@
 ---
 /* Home */
+import DynamicZone from "../components/Blocks/DynamicZone.astro";
 import Layout from "../layouts/Layout.astro";
 import { fetchApi } from "../lib/strapi/fetchApi";
 
@@ -8,10 +9,13 @@ const documentId = import.meta.env.DOCUMENT_ID || "rfp5n8wdxpbcsrfmfe7y21cj";
 
 const data = await fetchApi({
   apiRoute: `/api/pages/${documentId}`,
-  populate: true, // true para popular el contenido. Por defecto es false.
 }) as any
 
 if (!data) return Astro.redirect("/404")
+
+const { seo, data:blocks } = data
 ---
 
-<Layout seo={data.seo} blocks={data.blocks} />
+<Layout seo={seo}>
+  <DynamicZone blocks={blocks} />
+</Layout>

@@ -1,17 +1,14 @@
 ---
-import Footer from "../components/Sections/Footer.astro";
+import Footer from "../components/Blocks/Footer.astro";
 import Navbar from "../components/UI/Navbar.astro";
 import "../styles/global.css";
-import DynamicZone from "./DynamicZone.astro";
 
 interface Props {
 	seo: any,
-	blocks: any[]
 }
 
-const { seo, blocks } = Astro.props as Props;
+const { seo } = Astro.props as Props;
 
-console.log(blocks)
 ---
 
 <!doctype html>
@@ -40,8 +37,7 @@ console.log(blocks)
 	</head>
 	<body>
 		<Navbar />
-		<DynamicZone blocks={blocks} />
-		<Footer />
 		<slot />
+		<Footer />
 	</body>
 </html>
