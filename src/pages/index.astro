@@ -14,4 +14,4 @@ const data = await fetchApi({
 if (!data) return Astro.redirect("/404")
 ---
 
-<Layout seo={data.seo} sections={data.sections} />
+<Layout seo={data.seo} blocks={data.blocks} />

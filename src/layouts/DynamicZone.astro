@@ -1,25 +1,25 @@
 ---
+import Hero from '../components/Sections/Hero.astro';
+
 /* Para que esto funciona hay que crear una zona dinnamica en strapi 
-que se llame sections, en minúscula y plural 
+que se llame blocks, en minúscula y plural 
 */
-import Hero from "../components/Hero.astro";
 
-interface Props {
-  sections: any
-}
+interface Props { blocks: any }
 
-const { sections } = Astro.props as Props;
+const { blocks } = Astro.props as Props;
 
 const listComponents: Record<string, any> = {
- 'sections.hero': Hero,
+ 'blocks.hero': Hero,
+ // add more components
 };
 
-if (!sections) return console.warn("DynamicZone: No sections found")
+if (!blocks) return console.warn("DynamicZone: No sections found")
 
 ---
 {
-  sections.map((section: any, i: number) => {
-    const Component = listComponents[section.__component];
-    return <Component key={`${section.id || ""}-${i}`} {...section} />;
+  blocks.map((item: any, i: number) => {
+    const Component = listComponents[item.__component];
+    return <Component key={`${item.id || ""}-${i}`} {...item} />;
   })
 }

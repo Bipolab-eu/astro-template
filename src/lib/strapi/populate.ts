@@ -2,11 +2,12 @@
 // Esto popula zonas dinamicas de strapi, como los bloques de secciones, o el open graph de SEO.
 
 export const populate = {
-  sections: {
+  blocks: {
     on: {
-      'sections.hero': {
+      'blocks.hero': {
         populate: true
       },
+      // add more components
     }
   },
   seo: {
