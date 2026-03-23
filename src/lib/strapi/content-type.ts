@@ -1,5 +1,3 @@
-// Añadir bloques en base a su existencia.
-
 import CallToAction from "../../components/Blocks/CallToAction.astro";
 import Hero from "../../components/Blocks/Hero.astro";
 
