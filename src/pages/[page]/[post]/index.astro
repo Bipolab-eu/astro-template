@@ -18,7 +18,7 @@ const data = await fetchApi({
 
 if (!data[0]) return Astro.redirect("/404")
 
-const { seo, blocks:items } = data[0]
+const { seo, blocks:items } = data[0] // cambiar blocks por el nombre de la zona dinámica que uses en strapi
 ---
 
 <Layout seo={seo}>
